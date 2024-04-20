@@ -15,13 +15,7 @@
 
 ## Interesting Piece of Code
 
-for (Book bookid : bookInventory) {
-                                    if (idOut == bookid.getId() && !bookid.isCheckedOut()) {
-                                        bookid.checkOut(user);
-                                        System.out.println(bookid.getTitle() + " was successfully checked out by " + user + ".");
-                                    } else if (idOut == bookid.getId() && bookid.isCheckedOut()){
-                                        System.out.println("The selected book is unavailable.");
-                                    }
-                                }
+![Code](https://github.com/alyu15/WorkshopTwo_NeighborhoodLibrary/assets/166542449/3721fdab-1760-46de-b256-d6a64ad798ab)
+
 I found this piece of code interesting because it took me so long to figure out how to implement it and the solution turned out to be easier than I thought it would be. 
 I also enjoyed how it not only allows the user to check out the book, but also recognizes when the selected book is unable to be checked out because it has already been checked out.
