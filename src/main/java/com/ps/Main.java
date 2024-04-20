@@ -12,7 +12,7 @@ public class Main {
         Book book3 = new Book(3, "0003", "Harry Potter and the Prisoner of Azkaban", false);
         Book book4 = new Book(4, "0004", "Harry Potter and the Goblet of Fire", false);
         Book book5 = new Book(5, "0005", "Harry Potter and the Order of the Phoenix", true);
-        book1.checkOut("Mia");
+        book5.checkOut("Mia");
 
         Book book6 = new Book(6, "0006", "Harry Potter and the Half-Blood Prince", true);
         book6.checkOut("Owen");
@@ -47,10 +47,8 @@ public class Main {
 
         Book[] bookInventory = {book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11, book12, book13, book14, book15, book16, book17, book18, book19, book20};
 
-        // Store Home Screen
-
         int input;
-
+        System.out.println("Welcome to our Neighborhood Library!");
         do {
 
             System.out.println("Please choose an option:");
@@ -67,9 +65,7 @@ public class Main {
                 case 1:
                     System.out.println("Showing available books");
                     for (Book books : bookInventory) {
-                        if (books.isCheckedOut()) {
-                            //System.out.println(books);
-                        } else {
+                        if (!books.isCheckedOut()) {
                             System.out.println(books.getId() + " " + books.getIsbn() + " " + books.getTitle());
                         }
                     }
@@ -93,7 +89,6 @@ public class Main {
                                 for (Book bookid : bookInventory) {
                                     if (idOut == bookid.getId() && !bookid.isCheckedOut()) {
                                         bookid.checkOut(user);
-                                        //System.out.println(bookid);
                                         System.out.println(bookid.getTitle() + " was successfully checked out by " + user);
                                     } else if (idOut == bookid.getId() && bookid.isCheckedOut()){
                                         System.out.println("The selected book is unavailable.");
@@ -114,8 +109,6 @@ public class Main {
                             System.out.println(checkedBooks.getId() + " " + checkedBooks.getIsbn()
                                     + " " + checkedBooks.getTitle() + " checked out by " + checkedBooks.getCheckedOutTo());
 
-                        } else {
-//                            System.out.println("Book is available");
                         }
                     }
                     String userInput;
@@ -141,7 +134,10 @@ public class Main {
                                         System.out.println("Book is already checked in.");
                                     }
                                 }
-
+                                break;
+                            case "X":
+                                System.out.println("Returning to HOME menu...");
+                                break;
                         }
 
                     } while (!userInput.equals("X"));
