@@ -51,15 +51,15 @@ public class Main {
 
         int input;
 
-        System.out.println("Please choose an option:");
-        System.out.println("1. See available books");
-        System.out.println("2. See checked out books");
-        System.out.println("3. Exit");
-
-        Scanner scanner = new Scanner(System.in);
-        input = scanner.nextInt();
-
         do {
+
+            System.out.println("Please choose an option:");
+            System.out.println("1 - See available books");
+            System.out.println("2 - See checked out books");
+            System.out.println("3 - Exit");
+
+            Scanner scanner = new Scanner(System.in);
+            input = scanner.nextInt();
 
             int bookInput;
 
@@ -75,8 +75,8 @@ public class Main {
                     }
                     do {
                         System.out.println("Please choose an option: ");
-                        System.out.println("1. Check out a book");
-                        System.out.println("2. Return to HOME menu");
+                        System.out.println("1 - Check out a book");
+                        System.out.println("2 - Return to HOME menu");
 
                         bookInput = scanner.nextInt();
 
@@ -91,17 +91,62 @@ public class Main {
                                 String user = scanner.next();
 
                                 for (Book bookid : bookInventory) {
-                                    if (idOut == bookid.getId()) {
+                                    if (idOut == bookid.getId() && !bookid.isCheckedOut()) {
                                         bookid.checkOut(user);
                                         //System.out.println(bookid);
                                         System.out.println(bookid.getTitle() + " was successfully checked out by " + user);
+                                    } else if (idOut == bookid.getId() && bookid.isCheckedOut()){
+                                        System.out.println("The selected book is unavailable.");
                                     }
                                 }
+                                break;
                             case 2:
+                                System.out.println("Returning to HOME menu...");
+                                break;
+                        }
+
+                    } while (bookInput != 2);
+                    break;
+                case 2:
+                    System.out.println("Showing checked out books.");
+                    for (Book checkedBooks : bookInventory) {
+                        if (checkedBooks.isCheckedOut()) {
+                            System.out.println(checkedBooks.getId() + " " + checkedBooks.getIsbn()
+                                    + " " + checkedBooks.getTitle() + " checked out by " + checkedBooks.getCheckedOutTo());
+
+                        } else {
+//                            System.out.println("Book is available");
+                        }
+                    }
+                    String userInput;
+                    do {
+
+                        System.out.println("Please choose an option:");
+                        System.out.println("C - Check in a book");
+                        System.out.println("X - Return to HOME menu");
+
+                        userInput = scanner.next().toUpperCase().trim();
+
+                        switch (userInput) {
+                            case "C":
+                                System.out.println("Please enter in the ID of the book you would like to check in");
+                                int checkId;
+                                checkId = scanner.nextInt();
+
+                                for(Book inId:bookInventory) {
+                                    if (checkId == inId.getId() && inId.isCheckedOut()) {
+                                        inId.checkIn("");
+                                        System.out.println(inId.getTitle() + " was successfully checked in.");
+                                    } else if (checkId == inId.getId() && !inId.isCheckedOut()) {
+                                        System.out.println("Book is already checked in.");
+                                    }
+                                }
 
                         }
-                    } while (bookInput != 2);
+
+                    } while (!userInput.equals("X"));
+                    break;
             }
-        } while (input == 2);
+        } while (input != 3);
     }
 }
