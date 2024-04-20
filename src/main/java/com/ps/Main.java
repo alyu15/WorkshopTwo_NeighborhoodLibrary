@@ -1,5 +1,6 @@
 package com.ps;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -48,7 +49,9 @@ public class Main {
         Book[] bookInventory = {book1, book2, book3, book4, book5, book6, book7, book8, book9, book10, book11, book12, book13, book14, book15, book16, book17, book18, book19, book20};
 
         int input;
+
         System.out.println("Welcome to our Neighborhood Library!");
+
         do {
 
             System.out.println("Please choose an option:");
@@ -63,7 +66,7 @@ public class Main {
 
             switch (input) {
                 case 1:
-                    System.out.println("Showing available books");
+                    System.out.println("Showing available books...");
                     for (Book books : bookInventory) {
                         if (!books.isCheckedOut()) {
                             System.out.println(books.getId() + " " + books.getIsbn() + " " + books.getTitle());
@@ -78,18 +81,18 @@ public class Main {
 
                         switch (bookInput) {
                             case 1:
-                                System.out.println("Enter in the id of the book you would like to check out");
+                                System.out.println("Enter in the id of the book you would like to check out:");
 
                                 int idOut;
                                 idOut = scanner.nextInt();
 
-                                System.out.println("Please enter in your name");
+                                System.out.println("Please enter in your name:");
                                 String user = scanner.next();
 
                                 for (Book bookid : bookInventory) {
                                     if (idOut == bookid.getId() && !bookid.isCheckedOut()) {
                                         bookid.checkOut(user);
-                                        System.out.println(bookid.getTitle() + " was successfully checked out by " + user);
+                                        System.out.println(bookid.getTitle() + " was successfully checked out by " + user + ".");
                                     } else if (idOut == bookid.getId() && bookid.isCheckedOut()){
                                         System.out.println("The selected book is unavailable.");
                                     }
@@ -98,6 +101,8 @@ public class Main {
                             case 2:
                                 System.out.println("Returning to HOME menu...");
                                 break;
+                            default:
+                                System.out.println("Command not found.");
                         }
 
                     } while (bookInput != 2);
@@ -107,7 +112,7 @@ public class Main {
                     for (Book checkedBooks : bookInventory) {
                         if (checkedBooks.isCheckedOut()) {
                             System.out.println(checkedBooks.getId() + " " + checkedBooks.getIsbn()
-                                    + " " + checkedBooks.getTitle() + " checked out by " + checkedBooks.getCheckedOutTo());
+                                    + " " + checkedBooks.getTitle() + " checked out by " + checkedBooks.getCheckedOutTo() + ".");
 
                         }
                     }
@@ -122,7 +127,7 @@ public class Main {
 
                         switch (userInput) {
                             case "C":
-                                System.out.println("Please enter in the ID of the book you would like to check in");
+                                System.out.println("Please enter in the ID of the book you would like to check in:");
                                 int checkId;
                                 checkId = scanner.nextInt();
 
@@ -138,10 +143,18 @@ public class Main {
                             case "X":
                                 System.out.println("Returning to HOME menu...");
                                 break;
+                            default:
+                                System.out.println("Command not found.");
                         }
+
 
                     } while (!userInput.equals("X"));
                     break;
+                case 3:
+                    System.out.println("Exiting program...");
+                    break;
+                default:
+                    System.out.println("Command not found.");
             }
         } while (input != 3);
     }
