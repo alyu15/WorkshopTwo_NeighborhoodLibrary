@@ -55,9 +55,9 @@ public class Main {
         do {
 
             System.out.println("Please choose an option:");
-            System.out.println("1 - See available books");
-            System.out.println("2 - See checked out books");
-            System.out.println("3 - Exit");
+            System.out.println("\t1 - See available books");
+            System.out.println("\t2 - See checked out books");
+            System.out.println("\t3 - Exit");
 
             Scanner scanner = new Scanner(System.in);
             input = scanner.nextInt();
@@ -74,8 +74,8 @@ public class Main {
                     }
                     do {
                         System.out.println("Please choose an option: ");
-                        System.out.println("1 - Check out a book");
-                        System.out.println("2 - Return to HOME menu");
+                        System.out.println("\t1 - Check out a book");
+                        System.out.println("\t2 - Return to HOME menu");
 
                         bookInput = scanner.nextInt();
 
@@ -120,8 +120,8 @@ public class Main {
                     do {
 
                         System.out.println("Please choose an option:");
-                        System.out.println("C - Check in a book");
-                        System.out.println("X - Return to HOME menu");
+                        System.out.println("\tC - Check in a book");
+                        System.out.println("\tX - Return to HOME menu");
 
                         userInput = scanner.next().toUpperCase().trim();
 
