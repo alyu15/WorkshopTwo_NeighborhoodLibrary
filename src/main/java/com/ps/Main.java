@@ -7,7 +7,6 @@ public class Main {
 
         Book book1 = new Book(1, "0001", "Harry Potter and the Sorcerer's Stone", true);
         book1.checkOut("Joe");
-        System.out.println(book1.getCheckedOutTo());
 
         Book book2 = new Book(2, "0002", "Harry Potter and the Chamber of Secrets", false);
         Book book3 = new Book(3, "0003", "Harry Potter and the Prisoner of Azkaban", false);
@@ -71,9 +70,10 @@ public class Main {
                         if (books.isCheckedOut()) {
                             //System.out.println(books);
                         } else {
-                            System.out.println(books.getId() + " "+ books.getIsbn() + " " + books.getTitle());
+                            System.out.println(books.getId() + " " + books.getIsbn() + " " + books.getTitle());
                         }
                     }
+                    do {
                         System.out.println("Please choose an option: ");
                         System.out.println("1. Check out a book");
                         System.out.println("2. Return to HOME menu");
@@ -88,14 +88,20 @@ public class Main {
                                 idOut = scanner.nextInt();
 
                                 System.out.println("Please enter in your name");
-                                String name;
-                                name = scanner.nextLine();
-                                break;
+                                String user = scanner.next();
+
+                                for (Book bookid : bookInventory) {
+                                    if (idOut == bookid.getId()) {
+                                        bookid.checkOut(user);
+                                        //System.out.println(bookid);
+                                        System.out.println(bookid.getTitle() + " was successfully checked out by " + user);
+                                    }
+                                }
+                            case 2:
+
                         }
-                    }
-
-
+                    } while (bookInput != 2);
             }
-        while (input != 3);
+        } while (input == 2);
     }
 }
